@@ -10,7 +10,7 @@
 <body>
 
     <header class="header">
-        <div class="logo">BEAM<span>MODS</span></div>
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer">BEAM<span>MODS</span></div>
         <div class="search-container">
             <input type="text" id="search" placeholder="Search for mods..." onkeyup="searchMods()">
         </div>
@@ -22,9 +22,6 @@
                 <h3>Browse</h3>
                 <a href="#" class="sidebar-link active" onclick="filterSelection('all')">
                     <span class="icon">🏠</span> All Mods
-                </a>
-                <a href="#" class="sidebar-link" onclick="filterSelection('popular')">
-                    <span class="icon">🔥</span> Popular
                 </a>
             </div>
 
@@ -42,8 +39,9 @@
             </div>
         </aside>
 
- <section class="mods" id="mods">
-    </section>
+        <section class="mods" id="mods">
+            <div style="color: #555; padding: 20px;">Loading mods...</div>
+        </section>
     </main>
 
     <script src="script.js"></script>

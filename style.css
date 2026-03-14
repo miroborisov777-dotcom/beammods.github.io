@@ -5,26 +5,40 @@ font-family:Arial;
 margin:0;
 }
 
-header{
-text-align:center;
-padding:30px;
+.navbar{
 background:#151515;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.navbar input{
+padding:10px;
+border-radius:6px;
+border:none;
+width:200px;
 }
 
 .mods{
 display:flex;
-justify-content:center;
 flex-wrap:wrap;
-padding:20px;
+justify-content:center;
+padding:30px;
 }
 
 .mod-card{
 background:#1a1a1a;
-padding:15px;
-margin:15px;
-border-radius:10px;
 width:260px;
+margin:15px;
+padding:15px;
+border-radius:10px;
 text-align:center;
+transition:0.2s;
+}
+
+.mod-card:hover{
+transform:scale(1.05);
 }
 
 .mod-card img{
@@ -32,15 +46,12 @@ width:100%;
 border-radius:8px;
 }
 
-button{
-background:#ff3b3b;
-border:none;
+.download{
+display:inline-block;
+margin-top:10px;
 padding:10px 20px;
+background:#ff3b3b;
 color:white;
+text-decoration:none;
 border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#ff0000;
 }

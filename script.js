@@ -9,7 +9,8 @@ async function loadMods() {
         modsData.forEach((mod, index) => {
             const card = document.createElement('div');
             card.className = 'mod-card';
-            card.setAttribute('data-category', mod.category.toLowerCase());
+            // This ensures the category is always lowercase for the filter
+            card.setAttribute('data-category', mod.category.toLowerCase().trim());
 
             card.innerHTML = `
                 <div class="img-container">
@@ -32,19 +33,22 @@ async function loadMods() {
 function filterSelection(category) {
     const mods = document.getElementsByClassName("mod-card");
     const links = document.getElementsByClassName("sidebar-link");
+    const targetCategory = category.toLowerCase().trim();
 
-    // Update active link style
+    // 1. Update the sidebar UI (Active states)
     for (let link of links) {
         link.classList.remove("active");
-        if(link.innerText.toLowerCase().includes(category)) {
+        // This checks if the link you clicked matches the category
+        if (link.getAttribute('onclick').includes(`'${category}'`)) {
             link.classList.add("active");
         }
     }
 
-    // Show/Hide cards
+    // 2. Show or Hide the cards
     for (let mod of mods) {
         const itemCategory = mod.getAttribute("data-category");
-        if (category === "all" || itemCategory === category) {
+        
+        if (targetCategory === "all" || itemCategory === targetCategory) {
             mod.style.display = "block";
         } else {
             mod.style.display = "none";

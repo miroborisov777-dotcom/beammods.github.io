@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>BeamMods</title>
-<link rel="stylesheet" href="style.css">
+    <title>BeamMods | Leaks & Mods</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="navbar">
-<h1>BeamMods</h1>
+    <div class="header">
+        <div class="logo">BEAM<span>MODS</span></div>
+        <input type="text" id="search" placeholder="Search for mods..." onkeyup="searchMods()">
+    </div>
 
-<input type="text" id="search" placeholder="Search mods..." onkeyup="searchMods()">
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">All Mods</a></li>
+                <li><a href="#">Cars</a></li>
+                <li><a href="#">Trucks</a></li>
+                <li><a href="#">Maps</a></li>
+            </ul>
+        </div>
 
-</div>
+        <div class="mods" id="mods">
+            <div class="mod-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500">
+                    <div class="tag">NEW</div>
+                </div>
+                <div class="card-info">
+                    <h2>BMW M4 (G82)</h2>
+                    <p>High quality textures & sounds</p>
+                    <a href="mods/bmw-m4.html" class="download">Download</a>
+                </div>
+            </div>
 
-<div class="mods" id="mods">
+            <div class="mod-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=500">
+                </div>
+                <div class="card-info">
+                    <h2>Nissan GTR R35</h2>
+                    <p>Realistic physics & PBR</p>
+                    <a href="mods/gtr.html" class="download">Download</a>
+                </div>
+            </div>
 
-<div class="mod-card">
-<img src="https://via.placeholder.com/300x150">
-<h2>BMW M4</h2>
-<p>High quality BeamNG car mod</p>
-<a href="mods/bmw-m4.html" class="download">View Mod</a>
-</div>
+            </div>
+    </div>
 
-<div class="mod-card">
-<img src="https://via.placeholder.com/300x150">
-<h2>Nissan GTR</h2>
-<p>Realistic engine and sounds</p>
-<a href="mods/gtr.html" class="download">View Mod</a>
-</div>
-
-<div class="mod-card">
-<img src="https://via.placeholder.com/300x150">
-<h2>Ford Mustang</h2>
-<p>Detailed interior</p>
-<a href="mods/mustang.html" class="download">View Mod</a>
-</div>
-
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>

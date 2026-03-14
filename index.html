@@ -74,6 +74,19 @@
 </style>
 </head>
 <header class="header">
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <button id="menu-toggle" onclick="toggleSidebar()" style="background: #161b22; border: 1px solid #30363d; color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 18px;">
+            ☰
+        </button>
+        <div class="logo" onclick="window.location.href='index.html'">BEAM<span>MODS</span></div>
+    </div>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search mods..." oninput="searchMods()">
+    </div>
+<aside class="sidebar" id="sidebar-menu">
+    <div class="sidebar-title">Main</div>
+    <a href="javascript:void(0)" class="sidebar-link active" onclick="filterSelection('all', this)"><span>🏠</span> All Mods</a>
+    </aside>
     <div class="logo" onclick="window.location.href='index.html'">BEAM<span>MODS</span></div>
     <div class="search-container">
         <input type="text" id="search" placeholder="Search mods..." oninput="searchMods()">

@@ -20,26 +20,23 @@
         <aside class="sidebar">
             <div class="sidebar-group">
                 <h3>Browse</h3>
-                <a href="#" class="sidebar-link active">
+                <a href="#" class="sidebar-link active" onclick="filterSelection('all')">
                     <span class="icon">🏠</span> All Mods
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="#" class="sidebar-link" onclick="filterSelection('popular')">
                     <span class="icon">🔥</span> Popular
-                </a>
-                <a href="#" class="sidebar-link">
-                    <span class="icon">✨</span> Newest
                 </a>
             </div>
 
             <div class="sidebar-group">
                 <h3>Categories</h3>
-                <a href="#" class="sidebar-link">
+                <a href="#" class="sidebar-link" onclick="filterSelection('cars')">
                     <span class="icon">🏎️</span> Cars
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="#" class="sidebar-link" onclick="filterSelection('trucks')">
                     <span class="icon">🚛</span> Trucks
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="#" class="sidebar-link" onclick="filterSelection('maps')">
                     <span class="icon">🗺️</span> Maps
                 </a>
             </div>
@@ -47,9 +44,9 @@
 
         <section class="mods" id="mods">
             
-            <div class="mod-card">
+            <div class="mod-card" data-category="cars">
                 <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500" alt="BMW M4">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500">
                     <div class="tag">NEW</div>
                 </div>
                 <div class="card-info">
@@ -59,9 +56,9 @@
                 </div>
             </div>
 
-            <div class="mod-card">
+            <div class="mod-card" data-category="cars">
                 <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=500" alt="Nissan GTR">
+                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=500">
                 </div>
                 <div class="card-info">
                     <h2>Nissan GTR R35</h2>
@@ -70,14 +67,14 @@
                 </div>
             </div>
 
-            <div class="mod-card">
+            <div class="mod-card" data-category="maps">
                 <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1584345604482-8132731c8280?w=500" alt="Mustang">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500">
                 </div>
                 <div class="card-info">
-                    <h2>Ford Mustang GT</h2>
-                    <p>Detailed interior and engine bay.</p>
-                    <a href="mods/mustang.html" class="download">Download</a>
+                    <h2>Mount Akina</h2>
+                    <p>The legendary drift pass for BeamNG.</p>
+                    <a href="#" class="download">Download</a>
                 </div>
             </div>
 

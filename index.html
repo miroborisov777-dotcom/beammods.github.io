@@ -4,34 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeamMods | Premium BeamNG Mods</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2">
+    <style>
+        /* Forced Sleek Overrides */
+        body { background-color: #0b0e14 !important; margin: 0; font-family: 'Inter', sans-serif; }
+        .header { background: #0b0e14 !important; border-bottom: 1px solid #1c2128 !important; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; letter-spacing: 4px; font-size: 22px; text-transform: uppercase; color: white; cursor: pointer; }
+        .logo span { color: #3498db; }
+        .search-container input { background: #161b22; border: 1px solid #30363d; border-radius: 8px; color: white; padding: 10px 15px; width: 250px; outline: none; }
+        .main-layout { display: flex; max-width: 1400px; margin: 0 auto; padding: 30px; gap: 30px; }
+        .sidebar { width: 220px; }
+        .sidebar-link { display: block; color: #8b949e; text-decoration: none; padding: 10px; border-radius: 8px; margin-bottom: 5px; transition: 0.2s; }
+        .sidebar-link.active { background: #1c2128; color: white; }
+        .mods { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; width: 100%; }
+        .mod-card { background: #161b22; border-radius: 12px; overflow: hidden; border: 1px solid #1c2128; transition: 0.3s; }
+        .mod-card:hover { border-color: #3498db; transform: translateY(-5px); }
+        .card-info { padding: 20px; }
+        .view-btn { display: block; text-align: center; background: #3498db; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 15px; }
+    </style>
 </head>
 <body>
     <header class="header">
         <div class="logo" onclick="window.location.href='index.html'">BEAM<span>MODS</span></div>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Search for mods..." oninput="searchMods()">
-        </div>
+        <div class="search-container"><input type="text" id="search" placeholder="Search mods..." oninput="searchMods()"></div>
     </header>
-
     <main class="main-layout">
         <aside class="sidebar">
-            <div class="sidebar-group">
-                <h3>Browse</h3>
-                <a href="#" class="sidebar-link active" onclick="filterSelection('all')">🏠 All Mods</a>
-            </div>
-            <div class="sidebar-group">
-                <h3>Categories</h3>
-                <a href="#" class="sidebar-link" onclick="filterSelection('cars')">🏎️ Cars</a>
-                <a href="#" class="sidebar-link" onclick="filterSelection('trucks')">🚛 Trucks</a>
-                <a href="#" class="sidebar-link" onclick="filterSelection('maps')">🗺️ Maps</a>
-            </div>
+            <div style="color:#555; font-size:12px; margin-bottom:15px; letter-spacing:1px;">CATEGORIES</div>
+            <a href="#" class="sidebar-link active" onclick="filterSelection('all')">🏠 All Mods</a>
+            <a href="#" class="sidebar-link" onclick="filterSelection('cars')">🏎️ Cars</a>
+            <a href="#" class="sidebar-link" onclick="filterSelection('trucks')">🚛 Trucks</a>
         </aside>
-        <section class="mods" id="mods">
-            <p style="color: #555;">Loading mods...</p>
-        </section>
+        <section class="mods" id="mods"></section>
     </main>
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 </html>

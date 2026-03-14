@@ -1,10 +1,13 @@
-{
-    "name": "BMW F87 M2 Police",
-    "author": "Royal Renderings",
-    "description": "Police Update V1.4 - High quality sirens and skins.",
-    "category": "cars",
-    "image": "images/police_m2.jpg",
-    "download": "https://sharemods.com/...",
-    "tag": "NEW",
-    "version": "1.4"
-}
+[
+    {
+        "name": "BMW F87 M2 Police",
+        "author": "Royal Renderings",
+        "description": "A very high quality mod with 14 configs, amazing customization, working carplay system and general interactions/triggers, a subwoofer, and much more!",
+        "category": "cars",
+        "image": "images/police_m2.jpg",
+        "download": "https://sharemods.com/npf665w1ekha/F87_M2_and_F22_2_series__POLICE_UPDATE_V1.4___.zip.html",
+        "tag": "NEW",
+        "version": "v1.4",
+        "size": "760.27 MB"
+    }
+]

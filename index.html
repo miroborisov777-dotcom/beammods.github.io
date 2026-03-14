@@ -76,16 +76,22 @@
 </head>
 <body>
 
-    <header class="header">
-        <div class="header-left">
-            <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <div class="logo" onclick="window.location.href='index.html'">BEAM<span>MODS</span></div>
-        </div>
+   <header class="header">
+    <div class="header-left">
+        <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="logo" onclick="window.location.href='index.html'">BEAM<span>MODS</span></div>
+    </div>
+    
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="YOUR_DISCORD_LINK_HERE" target="_blank" class="discord-btn">
+            <span>https://discord.gg/whUdZ2gTTe</span>
+        </a>
+
         <div class="search-container">
             <input type="text" id="search" placeholder="Search mods..." oninput="searchMods()">
         </div>
-    </header>
-
+    </div>
+</header>
     <main class="main-layout">
         <aside class="sidebar" id="sidebar-menu">
             <div class="sidebar-title">Main</div>

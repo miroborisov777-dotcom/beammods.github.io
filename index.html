@@ -8,7 +8,7 @@
     <style>
         body { background-color: #0b0e14; color: white; margin: 0; font-family: 'Inter', sans-serif; }
         
-        /* RED THEME HEADER */
+        /* SLEEK BLUE HEADER */
         .header { 
             background: #0b0e14; 
             border-bottom: 1px solid #1c2128; 
@@ -18,16 +18,16 @@
             align-items: center; 
             position: sticky; top: 0; z-index: 100;
         }
-        .logo { font-weight: 800; letter-spacing: 4px; font-size: 22px; text-transform: uppercase; cursor: pointer; color: white; }
-        .logo span { color: #ff3e3e; } /* Matching the Red in your pic */
+        .logo { font-weight: 800; letter-spacing: 4px; font-size: 22px; text-transform: uppercase; color: white !important; cursor: pointer; }
+        .logo span { color: #3498db; }
 
-        /* SEARCH BAR */
+        /* HIGH-CONTRAST SEARCH BAR */
+        .search-container { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 2px 15px; display: flex; align-items: center; }
         .search-container input { 
-            background: #161b22; border: 1px solid #30363d; border-radius: 8px; 
-            color: white; padding: 10px 15px; width: 250px; outline: none;
+            background: transparent; border: none; color: white; padding: 10px 0; width: 250px; outline: none; font-size: 14px;
         }
 
-        /* SIDEBAR WITH RED ACTIVE STATE */
+        /* SIDEBAR */
         .main-layout { display: flex; max-width: 1400px; margin: 0 auto; padding: 30px; gap: 40px; }
         .sidebar { width: 240px; flex-shrink: 0; }
         .sidebar-title { color: #555; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin: 25px 0 12px 10px; text-transform: uppercase; }
@@ -35,31 +35,42 @@
             display: flex; align-items: center; color: #8b949e; text-decoration: none; 
             padding: 12px 15px; border-radius: 10px; margin-bottom: 4px; transition: 0.2s; font-weight: 600; font-size: 14px; 
         }
-        .sidebar-link:hover { color: white; }
-        .sidebar-link.active { background: rgba(255, 62, 62, 0.15); color: #ff3e3e; }
+        .sidebar-link:hover { color: white; background: #1c2128; }
+        .sidebar-link.active { background: #1c2128; color: white; }
+        .sidebar-link span { margin-right: 12px; font-size: 18px; }
 
-        /* MOD GRID */
+        /* GRID */
         .mods { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; width: 100%; }
         .mod-card { background: #161b22; border-radius: 14px; overflow: hidden; border: 1px solid #1c2128; transition: 0.3s; cursor: pointer; }
-        .mod-card:hover { border-color: #ff3e3e; transform: translateY(-5px); }
+        .mod-card:hover { border-color: #3498db; transform: translateY(-5px); }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="logo" onclick="window.location.href='index.html'">BEAM<span>MODS</span></div>
-        <div class="search-container"><input type="text" id="search" placeholder="Search mods..." oninput="searchMods()"></div>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search mods..." oninput="searchMods()">
+        </div>
     </header>
     <main class="main-layout">
         <aside class="sidebar">
-            <div class="sidebar-title">Browse</div>
-            <a href="javascript:void(0)" class="sidebar-link active" onclick="filterSelection('all', this)">🏠 All Mods</a>
-            <div class="sidebar-title">Categories</div>
-            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('cars', this)">🏎️ Cars</a>
-            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('trucks', this)">🚛 Trucks</a>
-            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('maps', this)">🗺️ Maps</a>
+            <div class="sidebar-title">Main</div>
+            <a href="javascript:void(0)" class="sidebar-link active" onclick="filterSelection('all', this)"><span>🏠</span> All Mods</a>
+            
+            <div class="sidebar-title">Vehicles</div>
+            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('cars', this)"><span>🏎️</span> Cars</a>
+            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('trucks', this)"><span>🚛</span> Trucks</a>
+            
+            <div class="sidebar-title">Customization</div>
+            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('parts', this)"><span>🔧</span> Vehicle Parts</a>
+            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('skins', this)"><span>🎨</span> Skins & Liveries</a>
+            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('sounds', this)"><span>🔊</span> Engine Sounds</a>
+            
+            <div class="sidebar-title">World</div>
+            <a href="javascript:void(0)" class="sidebar-link" onclick="filterSelection('maps', this)"><span>🗺️</span> Maps</a>
         </aside>
         <section class="mods" id="mods"></section>
     </main>
-    <script src="script.js?v=red"></script>
+    <script src="script.js?v=final_fix"></script>
 </body>
 </html>

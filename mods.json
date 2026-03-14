@@ -1,18 +1,24 @@
-{
-    "name": "BMW F87 M2 Police",
-    "author": "Royal Renderings",
-    "description": "Police Update V1.4 - High quality sirens and skins.",
-    "category": "cars",
-    "image": "images/police_m2.jpg",
-    "download": "https://sharemods.com/npf665w1ekha/F87_M2_and_F22_2_series__POLICE_UPDATE_V1.4___.zip.html",
-    "tag": "NEW"
-}
-{
-    "name": "DFA Pack",
-    "author": "Others",
-    "description": "It's all modified D-Series but it's nothing like your typical truck meshslap..",
-    "category": "cars",
-    "image": "images/DFA.jpg",
-    "download": "https://sharemods.com/meueb6t5803h/dfa_pack_UNZIP.zip.html",
-    "tag": "NEW"
-}
+[
+    {
+        "name": "BMW F87 M2 Police",
+        "author": "Royal Renderings",
+        "description": "Police Update V1.4 - High quality sirens and skins.",
+        "category": "cars",
+        "image": "images/police_m2.jpg",
+        "download": "https://sharemods.com/npf665w1ekha/F87_M2_and_F22_2_series__POLICE_UPDATE_V1.4___.zip.html",
+        "tag": "NEW",
+        "version": "1.4",
+        "size": "760 MB"
+    },
+    {
+        "name": "DFA Pack",
+        "author": "Others",
+        "description": "It's all modified D-Series but it's nothing like your typical truck meshslap..",
+        "category": "trucks",
+        "image": "images/DFA.jpg",
+        "download": "https://sharemods.com/meueb6t5803h/dfa_pack_UNZIP.zip.html",
+        "tag": "NEW",
+        "version": "1.0",
+        "size": "1.2 GB"
+    }
+]

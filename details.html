@@ -6,14 +6,18 @@
     <title>Mod Details | BeamMods</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .details-layout { max-width: 1200px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 1fr 350px; gap: 40px; }
-        .hero-img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .sidebar-card { background: #111; padding: 25px; border-radius: 15px; border: 1px solid #222; height: fit-content; }
-        .dl-button { display: block; background: #007bff; color: white; text-align: center; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; transition: 0.3s; }
-        .dl-button:hover { background: #0056b3; transform: translateY(-2px); }
-        .info-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; color: #888; }
-        .info-row span { color: white; font-weight: 600; }
-        @media (max-width: 900px) { .details-layout { grid-template-columns: 1fr; } }
+        body { background-color: #0b0e14; color: white; font-family: 'Inter', sans-serif; }
+        .details-layout { max-width: 1100px; margin: 50px auto; display: grid; grid-template-columns: 1fr 320px; gap: 40px; padding: 0 20px; }
+        .hero-img { width: 100%; border-radius: 12px; border: 1px solid #222; }
+        .author-text { color: #555; font-size: 14px; margin-top: 5px; }
+        .author-text span { color: #3498db; cursor: pointer; }
+        .description-box { background: #161b22; padding: 20px; border-radius: 10px; margin-top: 30px; line-height: 1.6; color: #ccc; }
+        .sidebar-card { background: #161b22; padding: 20px; border-radius: 12px; border: 1px solid #222; height: fit-content; position: sticky; top: 20px; }
+        .dl-btn { display: block; background: #3498db; color: white; text-align: center; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 20px; transition: 0.2s; }
+        .dl-btn:hover { background: #2980b9; }
+        .stat-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; font-size: 14px; color: #888; }
+        .stat-row span { color: #fff; font-weight: 500; }
+        @media (max-width: 850px) { .details-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -41,14 +45,18 @@
             document.getElementById('details-content').innerHTML = `
                 <div class="main-content">
                     <img src="${mod.image}" class="hero-img">
-                    <h1 style="font-size: 32px; margin: 30px 0 10px;">${mod.name}</h1>
-                    <p style="color: #aaa; line-height: 1.8; font-size: 16px;">${mod.description}</p>
+                    <h1 style="margin-top:25px; font-size:28px;">${mod.name}</h1>
+                    <p class="author-text">by <span>${mod.author || 'Unknown'}</span> - IRL Vehicle</p>
+                    <div class="description-box">
+                        ${mod.description}
+                    </div>
                 </div>
                 <aside class="sidebar-card">
-                    <a href="${mod.download}" target="_blank" class="dl-button">Download Now</a>
-                    <div class="info-row">Category <span>${mod.category}</span></div>
-                    <div class="info-row">Status <span>${mod.tag || 'Public'}</span></div>
-                    <div class="info-row">Version <span>1.4</span></div>
+                    <a href="${mod.download}" target="_blank" class="dl-btn">⬇ Download</a>
+                    <div class="stat-row">Category <span>${mod.category}</span></div>
+                    <div class="stat-row">Size <span>${mod.size || 'N/A'}</span></div>
+                    <div class="stat-row">Version <span>${mod.version || '1.0'}</span></div>
+                    <div class="stat-row">Status <span>${mod.tag || 'Stable'}</span></div>
                 </aside>
             `;
         }

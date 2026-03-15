@@ -14,15 +14,35 @@ body {
 
 /* --- Sleek Header & Logo --- */
 .header {
-    background-color: #0b0e14;
-    padding: 18px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* This pushes left and right apart */
     align-items: center;
-    border-bottom: 1px solid #1c2128;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    padding: 10px 20px;
+    background: #0b0e14;
+    border-bottom: 1px solid #30363d;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Gap between Discord button and Search bar */
+}
+
+.search-wrapper {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 250px; /* Adjust width as needed */
+}
+
+#search {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
 }
 
 .logo {

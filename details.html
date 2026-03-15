@@ -11,109 +11,94 @@
         .header { background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
         .back-btn { background: var(--card-bg); border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.2s; }
         .back-btn:hover { border-color: var(--accent); background: var(--border); }
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 350px; gap: 40px; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 350px; gap: 40px; }
         .mod-image { width: 100%; border-radius: 12px; border: 1px solid var(--border); aspect-ratio: 16/9; object-fit: cover; }
-        .info-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 25px; height: fit-content; }
-        .mod-title { font-size: 32px; font-weight: 800; margin: 0 0 10px 0; }
-        .mod-author { color: var(--accent); font-weight: 600; margin-bottom: 20px; display: block; }
-        .description { line-height: 1.6; color: #ccc; font-size: 15px; margin-top: 20px; white-space: pre-wrap; }
-        .download-btn { display: block; text-align: center; background: var(--accent); color: white; padding: 16px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 16px; margin-top: 20px; transition: 0.3s; }
-        .download-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
-        .tag-pill { background: #232a35; color: var(--text-dim); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px; display: inline-block; }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } .info-box { order: 2; } }
+        .info-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; height: fit-content; position: sticky; top: 20px; }
+        .mod-title { font-size: 32px; font-weight: 800; margin: 15px 0 5px 0; }
+        .mod-author { color: var(--accent); font-weight: 600; margin-bottom: 25px; display: block; }
+        .description { line-height: 1.8; color: #cbd5e0; font-size: 16px; margin-top: 25px; white-space: pre-wrap; }
+        .download-btn { display: block; text-align: center; background: #238636; color: white; padding: 18px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 18px; margin-top: 25px; transition: 0.3s; }
+        .download-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .tag-pill { background: #232a35; color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } .info-box { position: relative; top: 0; } }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <a href="index.html" class="back-btn">← Back to Gallery</a>
+        <a href="index.html" class="back-btn">← Back</a>
         <div style="font-weight: 800; letter-spacing: 2px;">BEAM<span>MODS</span></div>
-        <div style="width: 100px;"></div>
+        <div style="width: 80px;"></div>
     </header>
 
     <div class="container" id="mod-details">
-        <p>Fetching mod data...</p>
+        <p>Loading mod details...</p>
     </div>
 
- <script>
-    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1O-ShYPauFxMhzSSMtBtjYNJWiRSucc0yIKweex6fgis/gviz/tq?tqx=out:csv';
+    <script>
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1O-ShYPauFxMhzSSMtBtjYNJWiRSucc0yIKweex6fgis/gviz/tq?tqx=out:csv';
 
-    async function loadDetails() {
-        const params = new URLSearchParams(window.location.search);
-        let modId = params.get('id'); 
-        
-        if (!modId) {
-            document.getElementById('mod-details').innerHTML = "<h2>No mod selected!</h2>";
-            return;
-        }
+        async function loadDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const rawId = params.get('id');
+            if (!rawId) return;
 
-        const modName = decodeURIComponent(modId).trim().toLowerCase();
+            const targetName = decodeURIComponent(rawId).trim().toLowerCase();
 
-        try {
-            const response = await fetch(SHEET_URL);
-            const csvText = await response.text();
-            const allMods = parseCSV(csvText);
-            
-            // Search for the mod (Case-Insensitive for safety)
-            const mod = allMods.find(m => m.name && m.name.trim().toLowerCase() === modName);
+            try {
+                const response = await fetch(SHEET_URL);
+                const csvText = await response.text();
+                const allMods = parseCSV(csvText);
+                
+                // Find mod where name matches the URL
+                const mod = allMods.find(m => m.name && m.name.trim().toLowerCase() === targetName);
 
-            if (mod) { 
-                renderPage(mod); 
-            } else { 
-                document.getElementById('mod-details').innerHTML = `
-                    <h2>Mod not found!</h2>
-                    <p>We couldn't find a mod named "${decodeURIComponent(modId)}".</p>
-                    <a href="index.html" style="color:#3498db;">Go back to Home</a>`; 
+                if (mod) { 
+                    renderPage(mod); 
+                } else { 
+                    document.getElementById('mod-details').innerHTML = "<h2>Mod not found!</h2>"; 
+                }
+            } catch (e) {
+                document.getElementById('mod-details').innerHTML = "<h2>Connection Error</h2>";
             }
-        } catch (e) {
-            console.error("Error loading mod:", e);
-            document.getElementById('mod-details').innerHTML = "<h2>Connection Error</h2><p>Check your internet or spreadsheet settings.</p>";
         }
-    }
 
-    function parseCSV(text) {
-        const lines = text.split(/\r?\n/);
-        if (lines.length < 1) return [];
-
-        const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
-        const result = [];
-
-        for (let i = 1; i < lines.length; i++) {
-            if (!lines[i].trim()) continue;
-            
-            // This regex handles commas inside quotes correctly
-            const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
-            const obj = {};
-            
-            headers.forEach((header, index) => {
-                let val = values[index] || "";
-                obj[header] = val.replace(/^"|"$/g, '').trim();
-            });
-            result.push(obj);
+        function parseCSV(text) {
+            const lines = text.split(/\r?\n/);
+            const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+            const result = [];
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const values = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const obj = {};
+                headers.forEach((header, index) => {
+                    let val = values[index] || "";
+                    obj[header] = val.replace(/^"|"$/g, '').trim();
+                });
+                result.push(obj);
+            }
+            return result;
         }
-        return result;
-    }
 
-    function renderPage(mod) {
-        const container = document.getElementById('mod-details');
-        container.innerHTML = `
-            <div>
-                <img src="${mod.image}" class="mod-image" style="width:100%; border-radius:12px;" onerror="this.src='https://via.placeholder.com/800x450?text=Image+Not+Found'">
-                <div class="description" style="margin-top:20px; line-height:1.6; color:#8b949e;">${mod.description || 'No description provided.'}</div>
-            </div>
-            <div class="info-box" style="background:#161b22; padding:25px; border-radius:12px; border:1px solid #30363d;">
-                <span style="background:#3498db; color:white; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:bold; text-transform:uppercase;">${mod.tag || 'MOD'}</span>
-                <h1 style="margin:15px 0 5px 0; font-size:28px;">${mod.name}</h1>
-                <span style="color:#3498db; font-weight:600;">by ${mod.author || 'Unknown'}</span>
-                <hr style="border:0; border-top:1px solid #30363d; margin:20px 0;">
-                <p style="font-size: 13px; color: #8b949e;">Category: <b style="color:white;">${mod.category}</b></p>
-                <a href="${mod.link}" target="_blank" style="display:block; text-align:center; background:#238636; color:white; padding:15px; border-radius:8px; text-decoration:none; font-weight:bold; margin-top:20px;">Download Mod</a>
-            </div>
-        `;
-        document.title = mod.name + " | BeamMods";
-    }
+        function renderPage(mod) {
+            const container = document.getElementById('mod-details');
+            container.innerHTML = `
+                <div>
+                    <img src="${mod.image}" class="mod-image" onerror="this.src='https://via.placeholder.com/800x450?text=Image+Not+Found'">
+                    <div class="description">${mod.description || 'No description provided.'}</div>
+                </div>
+                <div class="info-box">
+                    <span class="tag-pill">${mod.tag || 'VERIFIED'}</span>
+                    <h1 class="mod-title">${mod.name}</h1>
+                    <span class="mod-author">by ${mod.author}</span>
+                    <p style="font-size: 14px; color: var(--text-dim);">Category: <b style="color:white;">${mod.category}</b></p>
+                    <a href="${mod.link}" target="_blank" class="download-btn">Download Mod</a>
+                </div>
+            `;
+            document.title = mod.name + " | BeamMods";
+        }
 
-    window.onload = loadDetails;
-</script>
+        window.onload = loadDetails;
+    </script>
 </body>
 </html>

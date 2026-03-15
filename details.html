@@ -35,78 +35,69 @@
         <p>Fetching mod data...</p>
     </div>
 
-    <script>
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1O-ShYPauFxMhzSSMtBtjYNJWiRSucc0yIKweex6fgis/gviz/tq?tqx=out:csv';
+  <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1O-ShYPauFxMhzSSMtBtjYNJWiRSucc0yIKweex6fgis/gviz/tq?tqx=out:csv';
 
-       async function loadDetails() {
-    const params = new URLSearchParams(window.location.search);
-    const modName = decodeURIComponent(params.get('id')); // Get the name from the URL
+    async function loadDetails() {
+        const params = new URLSearchParams(window.location.search);
+        // This gets the name from the URL (e.g., Lambo%20Diablo)
+        const modName = decodeURIComponent(params.get('id')); 
 
-    try {
-        const response = await fetch(SHEET_URL);
-        const csvText = await response.text();
-        const allMods = parseCSV(csvText);
-        
-        // FIX: Look through all mods to find the one with the matching name
-        const mod = allMods.find(m => m.name === modName);
+        try {
+            const response = await fetch(SHEET_URL);
+            const csvText = await response.text();
+            const allMods = parseCSV(csvText);
+            
+            // Search the list for the mod that has the exact same name
+            const mod = allMods.find(m => m.name === modName);
 
-        if (mod) { 
-            renderPage(mod); 
-        } else { 
-            document.getElementById('mod-details').innerHTML = "<h2>Mod not found!</h2>"; 
+            if (mod) { 
+                renderPage(mod); 
+            } else { 
+                document.getElementById('mod-details').innerHTML = "<h2>Mod not found!</h2><p>We couldn't find a mod named '" + modName + "'.</p>"; 
+            }
+        } catch (e) {
+            console.error(e);
+            document.getElementById('mod-details').innerHTML = "<h2>Connection Error</h2><p>Unable to reach the database.</p>";
         }
-    } catch (e) {
-        document.getElementById('mod-details').innerHTML = "<h2>Connection Error</h2>";
     }
-}
-            try {
-                const response = await fetch(SHEET_URL);
-                const csvText = await response.text();
-                const allMods = parseCSV(csvText);
-                const mod = allMods[modId];
 
-                if (mod) { renderPage(mod); } 
-                else { document.getElementById('mod-details').innerHTML = "<h2>Mod not found!</h2>"; }
-            } catch (e) {
-                document.getElementById('mod-details').innerHTML = "<h2>Connection Error</h2>";
-            }
+    function parseCSV(text) {
+        const lines = text.split(/\r?\n/);
+        const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+        const result = [];
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i]) continue;
+            const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+            const obj = {};
+            headers.forEach((header, index) => {
+                let val = values[index] || "";
+                obj[header] = val.replace(/^"|"$/g, '').trim();
+            });
+            result.push(obj);
         }
+        return result;
+    }
 
-        function parseCSV(text) {
-            const lines = text.split(/\r?\n/);
-            const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
-            const result = [];
-            for (let i = 1; i < lines.length; i++) {
-                if (!lines[i]) continue;
-                const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
-                const obj = {};
-                headers.forEach((header, index) => {
-                    let val = values[index] || "";
-                    obj[header] = val.replace(/^"|"$/g, '').trim();
-                });
-                result.push(obj);
-            }
-            return result;
-        }
+    function renderPage(mod) {
+        const container = document.getElementById('mod-details');
+        container.innerHTML = `
+            <div>
+                <img src="${mod.image}" class="mod-image" onerror="this.src='https://via.placeholder.com/800x450?text=Image+Not+Found'">
+                <div class="description">${mod.description || 'No description provided.'}</div>
+            </div>
+            <div class="info-box">
+                <span class="tag-pill">${mod.tag || 'VERIFIED'}</span>
+                <h1 class="mod-title">${mod.name}</h1>
+                <span class="mod-author">by ${mod.author}</span>
+                <p style="font-size: 13px; color: var(--text-dim);">Category: <b>${mod.category}</b></p>
+                <a href="${mod.link}" target="_blank" class="download-btn">Download Mod</a>
+            </div>
+        `;
+        document.title = mod.name + " | BeamMods";
+    }
 
-        function renderPage(mod) {
-            const container = document.getElementById('mod-details');
-            container.innerHTML = `
-                <div>
-                    <img src="${mod.image}" class="mod-image" onerror="this.src='https://via.placeholder.com/800x450'">
-                    <div class="description">${mod.description || 'No description provided.'}</div>
-                </div>
-                <div class="info-box">
-                    <span class="tag-pill">${mod.tag || 'VERIFIED'}</span>
-                    <h1 class="mod-title">${mod.name}</h1>
-                    <span class="mod-author">by ${mod.author}</span>
-                    <p style="font-size: 13px; color: var(--text-dim);">Category: <b>${mod.category}</b></p>
-                    <a href="${mod.link}" target="_blank" class="download-btn">Download Mod</a>
-                </div>
-            `;
-            document.title = mod.name + " | BeamMods";
-        }
-        window.onload = loadDetails;
-    </script>
+    window.onload = loadDetails;
+</script>
 </body>
 </html>
